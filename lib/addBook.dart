@@ -34,25 +34,49 @@ class _BookState extends State<Book> {
             )
           ),
           child: Column(
+            
             children: <Widget>[
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  hintText: 'book name'
+              new Padding(padding: EdgeInsets.only(top:50.0)),              
+              Container(
+                padding: EdgeInsets.only(left: 20.0),
+                  height: 50.0,
+                  width: 300.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color:Color(0xFFF9F9F9).withOpacity(0.7) ,
+                  ),
+                child: TextField(
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  textInputAction: TextInputAction.done,
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.library_books,color: Colors.grey,),
+                    hintText: 'Book name',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: InputBorder.none
+                  ),
                 ),
               ),
-              //  file == null ? Text('No image selected.') : Image.file(file),
-               FloatingActionButton(
+              new Padding(padding: EdgeInsets.only(top:20.0, bottom: 20.0)),
+               RaisedButton(
         onPressed: () async {
               var image = await ImagePicker.pickImage(source: ImageSource.gallery);
               setState(() {
                 imageFile = image;
               });
               fetchResults(context);
+              final snackBar = SnackBar(content: Text('Successfully Uploaded'));
+              Scaffold.of(context).showSnackBar(snackBar);
+
             },
-        heroTag: 'btn1',
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: new Text('Add Image',style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),),
+        color: Colors.white.withOpacity(0.7),
+        shape: RoundedRectangleBorder(
+          borderRadius: new BorderRadius.circular(22.0)
+        ),
+
       ),
       // FloatingActionButton(
       //   onPressed: (){fetchResults(context);},
