@@ -12,6 +12,7 @@ class Book extends StatefulWidget {
 class _BookState extends State<Book> {
   File imageFile;
   TextEditingController nameController = new TextEditingController();
+	TextEditingController authorController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,29 @@ class _BookState extends State<Book> {
                   ),
                 ),
               ),
+              Padding(padding: EdgeInsets.only(top:50.0)),
+               Container(
+                padding: EdgeInsets.only(left: 20.0),
+                  height: 50.0,
+                  width: 300.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    color:Color(0xFFF9F9F9).withOpacity(0.7) ,
+                  ),
+                child: TextField(
+                  keyboardType: TextInputType.text,
+                  textCapitalization: TextCapitalization.none,
+                  autocorrect: false,
+                  textInputAction: TextInputAction.done,
+                  controller: authorController,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.library_books,color: Colors.grey,),
+                    hintText: 'User Name',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: InputBorder.none
+                  ),
+                ),
+              ),
               new Padding(padding: EdgeInsets.only(top:20.0, bottom: 20.0)),
                RaisedButton(
         onPressed: () async {
@@ -95,7 +119,8 @@ fetchResults(BuildContext context) async{
     var bytes = imageFile.readAsBytesSync();
     Map data = {
       'name' : nameController.text,
-      'image': base64.encode(bytes)
+      'image': base64.encode(bytes),
+    	'author' : authorController.text
     };
      await http.post(url,headers: {"Content-Type": "application/x-www-form-urlencoded"},body: json.encode(data)
     );
