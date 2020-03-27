@@ -35,17 +35,21 @@ class _LoginState extends State<Login> {
           )
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            SizedBox(height: 80,),
+            Padding(
+              padding: const EdgeInsets.only(top:50.0),
+              child: Image(image: AssetImage('assets/logo1.png',)),
+            ),
+            // SizedBox(height: 80,),
             Padding(
               padding: EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  FadeAnimation(1, Text("Login", style: TextStyle(color: Colors.white, fontSize: 40),)),
+                  FadeAnimation(1, Text("Book Exchanger", style: TextStyle(color: Colors.white, fontSize: 30),)),
                   SizedBox(height: 10,),
-                  FadeAnimation(1.3, Text("Welcome Back", style: TextStyle(color: Colors.white, fontSize: 18),)),
+                  // FadeAnimation(1.3, Text("Login", style: TextStyle(color: Colors.white, fontSize: 18),)),
                 ],
               ),
             ),
