@@ -107,7 +107,14 @@ final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
                     
                     itemCount: userData == null? 0: userData.length,
                     itemBuilder: (BuildContext context, int index){
-                      return InkWell( onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context) => Description(index)),);
+                      return InkWell(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Description(index: index)
+                            ),
+                          );
                       },
                     child: Container(
                     padding: EdgeInsets.only(bottom: 15.0),
