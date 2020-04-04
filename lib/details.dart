@@ -5,23 +5,20 @@ import 'package:http/http.dart' as http;
 import 'Home.dart';
 
 class Description extends StatefulWidget {
-  int index;
+  final int index;
   Description({this.index});
   @override
-  _DescriptionState createState() => _DescriptionState(value:value);
+  _DescriptionState createState() => _DescriptionState();
 }
 
 class _DescriptionState extends State<Description> {
 List userData;
 Map details;
-int value;
-
-
 
   Future getData() async {
     var url =  'http://192.168.43.148:8000/details_api/';
     Map data ={
-      "id" : value.toString()
+      "id" : widget.index.toString()
     };
     var body = json.encode(data);
     var resp = await http.post(url, body: body);
