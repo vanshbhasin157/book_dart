@@ -5,6 +5,10 @@ import 'dart:convert' show json;
 import 'package:http/http.dart' as http;
 import 'addBook.dart';
 import 'search.dart';
+import 'details.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -14,6 +18,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
    Map data;
   List userData;
+  
 
 
   Future getData() async {
@@ -98,30 +103,35 @@ final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
                   child: RefreshIndicator(
                     key: _refreshIndicatorKey,
                     onRefresh: _refresh,
-                                      child: new ListView.builder(
+                    child: new ListView.builder(
+                    
                     itemCount: userData == null? 0: userData.length,
                     itemBuilder: (BuildContext context, int index){
-                      return Container(
-                        padding: EdgeInsets.only(bottom: 15.0),
+                      return InkWell( onTap: (){Navigator.push(context,MaterialPageRoute(builder: (context) => Description(index)),);
+                      },
+                    child: Container(
+                    padding: EdgeInsets.only(bottom: 15.0),
                     height: 80.0,
                     width: 300.0,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color:Color(0xFFF9F9F9).withOpacity(0.7) ,
+                        borderRadius: BorderRadius.circular(20.0),
+                        color:Color(0xFFF9F9F9).withOpacity(0.7) ,
                     ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                            CircleAvatar(
-                              backgroundImage: NetworkImage(userData[index]["image"]),
-                            ),
-                            Text("${userData[index]["name"]}",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.grey
-                            ),)
-                            ],
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                              CircleAvatar(
+                                backgroundImage: NetworkImage(userData[index]["image"]),
+                              ),
+                              Text("${userData[index]["name"]}",
+                              
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.grey
+                              ),)
+                              ],
+                          ),
                         ),
                       );
                     }
@@ -134,4 +144,3 @@ final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
     );
   }
 }
-
